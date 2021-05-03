@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDoList.MainPage"
+             xmlns:local="clr-namespace:ToDoList"
+             BackgroundColor="#d9d9d9">
+    <ContentPage.BindingContext>
+        <local:ToDoListViewModel/>
+    </ContentPage.BindingContext>
+    
+    <StackLayout>
+        <Frame BackgroundColor="#703383" Padding="16">
+            <Label Text="Tareas por hacer:"
+                   HorizontalTextAlignment="Start"
+                   TextColor="#fff"
+                   FontSize="30"
+                   FontAttributes="Bold"/>
+        </Frame>
+        <StackLayout Margin='15' Padding="10">
+
+            <ListView x:Name="lvTasks"
+                      ItemsSource="{Binding Tasks}"
+                      SelectedItem="{Binding SelectedTask}"
+                      BackgroundColor="#fff"
+                      SeparatorColor="#202124">
+            </ListView>
+            <Entry Placeholder="Descripcion de la tarea"
+                   Text="{Binding TaskDesc}"
+                   x:Name="txtTaskDesc"
+                   FontSize="20"/>
+            <Grid Padding="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ImageButton Grid.Column="0"
+                             Source="add.png"
+                             Padding="10"
+                             BackgroundColor="#db86f5"
+                             CornerRadius="15"
+                             Aspect="AspectFit"
+                             HeightRequest="80"
+                             WidthRequest="80"
+                             Command="{Binding AddNewTaskCommand}"/>
+                <ImageButton Grid.Column="1"
+                             Source="delete.png"
+                             Padding="10"
+                             BackgroundColor="#db86f5"
+                             CornerRadius="15"
+                             Aspect="AspectFit"
+                             HeightRequest="80"
+                             WidthRequest="80"
+                             Command="{Binding DeleteTaskCommand}"/>
+                <ImageButton Grid.Column="2"
+                             Source="refresh.png"
+                             Padding="10"
+                             BackgroundColor="#db86f5"
+                             CornerRadius="15"
+                             Aspect="AspectFit"
+                             HeightRequest="80"
+                             WidthRequest="80"
+                             Command="{Binding UpdateTaskCommand}"/>
+            </Grid>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
